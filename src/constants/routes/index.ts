@@ -7,5 +7,8 @@ export const routes = {
   },
   posts: {
     value: "/posts",
+    detail: {
+      value: "/posts/{id}",
+    },
   },
-};
+}

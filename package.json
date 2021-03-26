@@ -4,15 +4,17 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "tsc && kill-port 9229 && node --inspect dist/index.js",
+    "start": "tsc && node --inspect dist/index.js",
     "dev": "nodemon --config nodemon.json"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hapi/boom": "^9.1.2",
     "@hapi/hapi": "^20.1.2",
     "@hapi/jwt": "^2.0.1",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "glob": "^7.1.6"
   },
