@@ -1,8 +1,8 @@
 export const routes = {
-  users: {
-    value: "/users",
+  auth: {
+    value: "/auth",
     login: {
-      value: "/users/login",
+      value: "/auth/login",
     },
   },
   posts: {
