@@ -1,3 +1,4 @@
+import Joi from "joi"
 import { routes } from "../../constants/routes"
 import { Authenticate } from "../../services"
 import { ICredential } from "../../types/authenticate"
@@ -11,6 +12,7 @@ const login = {
   method: "POST",
   path: routes.auth.login.value,
   config: {
+    tags: ['api'],
     handler: function (req): ICredential {
       const loginData: ILoginRequest = {
         email: req?.payload?.email || "",
@@ -20,7 +22,13 @@ const login = {
       const credential = authenticate.loginWithEmail(loginData)
       return credential
     },
-  },
+    validate: {
+      payload: Joi.object({
+        email: Joi.string().required(),
+        password: Joi.string().required(),
+      })
+    },
+  }
 }
 
 module.exports = login

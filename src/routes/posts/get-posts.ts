@@ -4,7 +4,9 @@ import { postGateway } from "../../gateways"
 const getPosts = {
   method: "GET",
   path: routes.posts.value,
-  config: {
+  options: {
+    tags: ['api'],
+    description: 'Get all posts',
     handler: async function (): Promise<object> {
       return postGateway.getPosts()
     },
