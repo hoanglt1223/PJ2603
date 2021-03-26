@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,6 +15,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "reason-digital-test" #Must be unique in Heroku
           heroku_email: "kieutridang.16091993@gmail.com"
+          justlogin: true
         env:
           HD_JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}
           HD_JWT_ISS: ${{secrets.JWT_ISS}}

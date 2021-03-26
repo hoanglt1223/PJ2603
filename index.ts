@@ -1,45 +1,43 @@
-import Hapi, { ServerRegisterPluginObject } from "@hapi/hapi";
-import Inert from '@hapi/inert';
-import Jwt from "@hapi/jwt";
-import Vision from '@hapi/vision';
-import glob from "glob";
-import HapiSwagger, { RegisterOptions } from 'hapi-swagger';
-import path from "path";
-import { JWT_AUD, JWT_ISS, JWT_SECRET_KEY } from "./src/configs";
-
+import Hapi, { ServerRegisterPluginObject } from "@hapi/hapi"
+import Inert from "@hapi/inert"
+import Jwt from "@hapi/jwt"
+import Vision from "@hapi/vision"
+import glob from "glob"
+import HapiSwagger, { RegisterOptions } from "hapi-swagger"
+import path from "path"
+import { JWT_AUD, JWT_ISS, JWT_SECRET_KEY } from "./src/configs"
 
 async function initServer() {
   const server = Hapi.server({ port: process.env.PORT || 8000 })
+
   const swaggerOptions: RegisterOptions = {
-    documentationPath: '/docs',
+    documentationPath: "/docs",
     info: {
-      title: 'Test API Documentation',
+      title: "Test API Documentation",
     },
     securityDefinitions: {
-      'jwt': {
-        'type': 'apiKey',
-        'name': 'Authorization',
-        'in': 'header',
-      }
+      jwt: {
+        type: "apiKey",
+        name: "Authorization",
+        in: "header",
+      },
     },
-    security: [{ jwt: [] }]
-  };
-
+    security: [{ jwt: [] }],
+  }
   const plugins: Array<ServerRegisterPluginObject<any>> = [
     Jwt,
     {
-      plugin: Inert
+      plugin: Inert,
     },
     {
-      plugin: Vision
+      plugin: Vision,
     },
     {
       plugin: HapiSwagger,
-      options: swaggerOptions
-    }
-  ];
-
-  await server.register(plugins);
+      options: swaggerOptions,
+    },
+  ]
+  await server.register(plugins)
 
   server.auth.strategy("jwt", "jwt", {
     keys: JWT_SECRET_KEY,
@@ -56,21 +54,21 @@ async function initServer() {
       return {
         isValid: true,
         scope: { scope: artifacts.decoded.payload.scope },
-      };
+      }
     },
-  });
+  })
 
   glob
     .sync("dist/src/routes/**/*.js", {
       root: __dirname,
     })
     .forEach((file) => {
-      const route = require(path.join(__dirname, "../", file));
-      server.route(route);
-    });
+      const route = require(path.join(__dirname, "../", file))
+      server.route(route)
+    })
 
-  await server.start();
-  console.log("server running at: " + server.info.uri);
+  await server.start()
+  console.log("server running at: " + server.info.uri)
 }
 
-initServer();
+initServer()

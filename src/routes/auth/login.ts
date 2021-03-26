@@ -12,7 +12,7 @@ const login = {
   method: "POST",
   path: routes.auth.login.value,
   config: {
-    tags: ['api'],
+    tags: ["api"],
     handler: function (req): ICredential {
       const loginData: ILoginRequest = {
         email: req?.payload?.email || "",
@@ -26,9 +26,9 @@ const login = {
       payload: Joi.object({
         email: Joi.string().required(),
         password: Joi.string().required(),
-      })
+      }),
     },
-  }
+  },
 }
 
 module.exports = login
