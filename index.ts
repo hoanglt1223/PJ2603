@@ -5,7 +5,7 @@ import path from "path"
 import { JWT_AUD, JWT_ISS, JWT_SECRET_KEY } from "./src/configs"
 
 async function initServer() {
-  const server = Hapi.server({ port: 8000 })
+  const server = Hapi.server({ port: process.env.PORT || 8000 })
   await server.register(Jwt)
 
   server.auth.strategy("jwt", "jwt", {
