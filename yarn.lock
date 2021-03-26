@@ -327,7 +327,7 @@
   resolved "https://registry.yarnpkg.com/@types/hapi__catbox/-/hapi__catbox-10.2.3.tgz#c9279c16d709bf2987491c332e11d18124ae018f"
   integrity sha512-gs6MKMKXzWpSqeYsPaDIDAxD8jLNg7aFxgAJE6Jnc+ns072Z9fuh39/NF5gSk1KNoGCLnIpeZ0etT9gY9QDCKg==
 
-"@types/hapi__hapi@^20.0.5":
+"@types/hapi__hapi@*", "@types/hapi__hapi@^20.0.5":
   version "20.0.5"
   resolved "https://registry.yarnpkg.com/@types/hapi__hapi/-/hapi__hapi-20.0.5.tgz#1cc41892a8ada002f4ee45fb8095b0aad0b0c17b"
   integrity sha512-xzGVjTr2i4xsJKKVrIOxVUq6H2m04ATtDiwOQHXdVBVnuEZoWbkN8tbb0L2S+DRXV7k2Zw5pW73YzDQHhbX5pw==
@@ -339,6 +339,14 @@
     "@types/hapi__podium" "*"
     "@types/hapi__shot" "*"
     "@types/node" "*"
+    joi "^17.3.0"
+
+"@types/hapi__jwt@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/hapi__jwt/-/hapi__jwt-2.0.0.tgz#559a0545381099aa54c2ff87f99ae27b2eec2edb"
+  integrity sha512-VWTGWes0CLUt7iTzOpZpYaPrChrvBeOaa6IQFIMl/JxIjGdVBlg+B3pjbqtZkQe5GDHmFJH00DYxTlj4dEEOfA==
+  dependencies:
+    "@types/hapi__hapi" "*"
     joi "^17.3.0"
 
 "@types/hapi__mimos@*":
@@ -395,13 +403,6 @@ argparse@^1.0.7:
   integrity sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
   dependencies:
     sprintf-js "~1.0.2"
-
-axios@^0.21.1:
-  version "0.21.1"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
-  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
-  dependencies:
-    follow-redirects "^1.10.0"
 
 balanced-match@^1.0.0:
   version "1.0.0"
@@ -483,11 +484,6 @@ esprima@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
   integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
-
-follow-redirects@^1.10.0:
-  version "1.13.3"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.3.tgz#e5598ad50174c1bc4e872301e82ac2cd97f90267"
-  integrity sha512-DUgl6+HDzB0iEptNQEXLx/KhTmDb8tZUHSeLqpnjpknR70H0nC2t9N73BK6fN4hOvJ84pKlIQVQ4k5FFlBedKA==
 
 fs.realpath@^1.0.0:
   version "1.0.0"

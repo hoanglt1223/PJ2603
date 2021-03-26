@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
-import { JWT_EXPIRED_TIME, JWT_SECRET_KEY } from "../../configs";
+import Jwt from "@hapi/jwt";
+import { JWT_AUD, JWT_ISS, JWT_SECRET_KEY } from "../../configs";
 import { ICredential } from "../../types/authenticate";
 import { IUser } from "../../types/users";
 
@@ -14,8 +14,8 @@ enum UserScope {
 
 export class Authenticate {
   private signToken(data: any): string {
-    const token: string = jwt.sign(data, JWT_SECRET_KEY, {
-      expiresIn: JWT_EXPIRED_TIME,
+    const token: string = Jwt.token.generate(data, JWT_SECRET_KEY, {
+      ttlSec: 3600,
     });
     return token;
   }
@@ -26,8 +26,8 @@ export class Authenticate {
       user?.password === mockUser?.password
     ) {
       const token = this.signToken({
-        aud: 'urn:audience:test',
-        iss: 'urn:issuer:test',
+        aud: JWT_AUD,
+        iss: JWT_ISS,
         email: user?.email,
         scope: [UserScope.ADMIN],
       });

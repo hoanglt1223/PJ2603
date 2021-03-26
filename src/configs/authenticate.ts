@@ -3,6 +3,5 @@ import path from "path";
 dotenv.config({ path: path.join(__dirname, "../../../", ".env") });
 
 export const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
-export const JWT_EXPIRED_TIME = process.env.JWT_EXPIRED_TIME;
 export const JWT_ISS = process.env.JWT_ISS
 export const JWT_AUD = process.env.JWT_AUD
