@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "reason-digital-test" #Must be unique in Heroku
+          heroku_email: "kieutridang.16091993@gmail.com"
+          justlogin: true
+          usedocker: true
+          docker_build_args: |
+            JWT_SECRET_KEY
+            JWT_ISS
+            JWT_AUD
+        env:
+          JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}
+          JWT_ISS: ${{secrets.JWT_ISS}}
+          JWT_AUD: ${{secrets.JWT_AUD}}

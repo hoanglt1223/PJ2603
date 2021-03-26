@@ -7,8 +7,8 @@ const getPostById = {
   method: "GET",
   path: routes.posts.detail.value,
   options: {
-    tags: ['api'],
-    description: 'Get post by id',
+    tags: ["api"],
+    description: "Get post by id",
     handler: async function (request, h): Promise<object> {
       const posts = await postGateway.getPosts()
 
@@ -23,16 +23,14 @@ const getPostById = {
     },
     validate: {
       params: Joi.object({
-        id: Joi.number()
-          .required()
-          .description('the id for post'),
-      })
+        id: Joi.number().required().description("the id for post"),
+      }),
     },
     auth: {
       strategy: "jwt",
       scope: ["admin"],
     },
-  }
+  },
 }
 
 module.exports = getPostById
