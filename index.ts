@@ -1,13 +1,12 @@
-import Jwt from "@hapi/jwt";
-import Hapi from "@hapi/hapi";
-import glob from "glob";
-import path from "path";
-
-import { JWT_AUD, JWT_ISS, JWT_SECRET_KEY } from "./src/configs";
+import Hapi from "@hapi/hapi"
+import Jwt from "@hapi/jwt"
+import glob from "glob"
+import path from "path"
+import { JWT_AUD, JWT_ISS, JWT_SECRET_KEY } from "./src/configs"
 
 async function initServer() {
-  const server = Hapi.server({ port: 8000 });
-  await server.register(Jwt);
+  const server = Hapi.server({ port: 8000 })
+  await server.register(Jwt)
 
   server.auth.strategy("jwt", "jwt", {
     keys: JWT_SECRET_KEY,
@@ -24,21 +23,21 @@ async function initServer() {
       return {
         isValid: true,
         scope: { scope: artifacts.decoded.payload.scope },
-      };
+      }
     },
-  });
+  })
 
   glob
     .sync("dist/src/routes/**/*.js", {
       root: __dirname,
     })
     .forEach((file) => {
-      const route = require(path.join(__dirname, "../", file));
-      server.route(route);
-    });
+      const route = require(path.join(__dirname, "../", file))
+      server.route(route)
+    })
 
-  await server.start();
-  console.log("server running at: " + server.info.uri);
+  await server.start()
+  console.log("server running at: " + server.info.uri)
 }
 
-initServer();
+initServer()
